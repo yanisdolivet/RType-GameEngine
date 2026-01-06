@@ -16,6 +16,6 @@
 class MovementSystem
 {
     public:
-        void operator()(Registry& registry, SparseArray<Components::Mouvement>& mouvements,
+        void operator()(Registry&, SparseArray<Components::Mouvement>& mouvements,
                         SparseArray<Components::Velocity>& velocities, SparseArray<Components::Speed>& speeds) const;
 };

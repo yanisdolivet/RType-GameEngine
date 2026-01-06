@@ -7,7 +7,7 @@
 
 #include "MovementSystem.hpp"
 
-void MovementSystem::operator()(Registry& registry, SparseArray<Components::Mouvement>& mouvements,
+void MovementSystem::operator()(Registry&, SparseArray<Components::Mouvement>& mouvements,
                                 SparseArray<Components::Velocity>& velocities,
                                 SparseArray<Components::Speed>& speeds) const
 {

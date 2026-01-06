@@ -13,7 +13,7 @@ namespace Components
     {
     }
 
-    AnimationComponent::AnimationComponent(const std::map<std::string, Config::AnimatorState>& animation,
+    AnimationComponent::AnimationComponent(const std::map<std::string, AnimatorState>& animation,
                                            const std::string& curr_state)
         : _animation(animation), _curr_state(curr_state)
     {
@@ -28,7 +28,7 @@ namespace Components
     {
     }
 
-    Config::AnimatorState AnimationComponent::getAnimationData(std::string animation) const
+    AnimatorState AnimationComponent::getAnimationData(std::string animation) const
     {
         return this->_animation.at(animation);
     }

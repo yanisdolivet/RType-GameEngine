@@ -7,16 +7,13 @@
 
 #include "Clickable.hpp"
 
-#include "network/NetworkHandler.hpp"
-
 namespace Components
 {
     Clickable::Clickable()
     {
     }
 
-    Clickable::Clickable(
-        float x, float y, int width, int height, std::function<void()> callback)
+    Clickable::Clickable(float x, float y, int width, int height, std::function<void()> callback)
         : _position(std::make_pair(x, y)), _size(std::make_pair(width, height)), _callback(callback)
     {
     }
@@ -40,7 +37,8 @@ namespace Components
         return std::make_pair(_position, _size);
     }
 
-    void Clickable::trigger() const {
+    void Clickable::trigger() const
+    {
         if (_callback) {
             _callback();
         }

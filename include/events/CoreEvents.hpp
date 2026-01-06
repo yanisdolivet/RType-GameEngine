@@ -60,4 +60,3 @@ struct EventLeftClick
         float y;
         bool pressed;
 };
-

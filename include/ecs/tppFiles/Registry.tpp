@@ -109,27 +109,6 @@ Component& Registry::getSpecificComponent(Entity const& entity)
 }
 
 /**
- * @brief Find an entity by its NetworkId component
- *
- * @tparam Component
- * @param registry
- * @param targetNetId
- * @return std::optional<Entity>
- */
-template <class Component>
-std::optional<Entity> Registry::getEntityByNetworkId(Registry& registry, std::size_t targetNetId)
-{
-    auto& netIds = registry.getComponents<Components::NetworkId>();
-
-    for (auto&& [idx, netId] : IndexedZipper(netIds)) {
-        if (netId.getId() == targetNetId) {
-            return registry.entityFromIndex(idx);
-        }
-    }
-    return std::nullopt;
-}
-
-/**
  * @brief Remove a component of type Component from a given entity
  *
  * @tparam Component

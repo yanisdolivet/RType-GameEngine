@@ -11,23 +11,13 @@
 #include <memory>
 #include <utility>
 
-#include "PacketManager.hpp"
-
-// Forward declaration
-namespace Client
-{
-    class NetworkHandler;
-}
-
 namespace Components
 {
     class Clickable
     {
         public:
             Clickable();
-            Clickable(
-                float x, float y, int width, int height,
-                std::function<void()> callback);
+            Clickable(float x, float y, int width, int height, std::function<void()> callback);
             ~Clickable();
 
             std::pair<float, float> getPosition() const;

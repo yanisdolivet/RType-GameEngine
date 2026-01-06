@@ -29,7 +29,7 @@ void AnimationSystem::operator()(Registry&, SparseArray<Components::DrawableComp
     // BASIC SPRITE ANIMATION
     for (auto&& [dr, an] : Zipper(drawable, animaton)) {
         AnimatorState animState = an.getAnimationData(an.getCurrState());
-        int curframe                    = an.getCurrFrameIndex();
+        int curframe            = an.getCurrFrameIndex();
         an.updateTime();
 
         // Check for queued animation switch

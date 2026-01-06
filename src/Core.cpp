@@ -90,10 +90,10 @@ void GameEngine::Core::_updateTime(std::chrono::steady_clock::time_point& lastFr
     }
 }
 
-void GameEngine::Core::setMap(Config::LevelCommonConfig commonConfigFile)
+void GameEngine::Core::setMap(std::vector<std::string> entitiesList)
 {
-    for (auto const& [key, val] : commonConfigFile.entities)
-        this->setEntity(key);
+    for (auto const& entityName : entitiesList)
+        this->setEntity(entityName);
 }
 
 void GameEngine::Core::setEntity(const std::string& entityName)

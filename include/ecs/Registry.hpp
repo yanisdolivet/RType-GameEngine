@@ -14,7 +14,6 @@
 
 #include "Entity.hpp"
 #include "IndexedZipper.hpp"
-#include "NetworkId.hpp"
 #include "SparseArray.hpp"
 
 class Registry
@@ -34,9 +33,6 @@ class Registry
 
         template <class Component>
         Component& getSpecificComponent(Entity const& entity);
-
-        template <class Component>
-        std::optional<Entity> getEntityByNetworkId(Registry& registry, std::size_t targetNetId);
 
         Entity spawnEntity();
 

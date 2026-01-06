@@ -15,7 +15,7 @@
 #include <stdexcept>
 #include <string>
 
-#include "ClientConfigStruct.hpp"
+#include "AnimationStruct.hpp"
 
 namespace Components
 {
@@ -23,11 +23,10 @@ namespace Components
     {
         public:
             AnimationComponent();
-            AnimationComponent(const std::map<std::string, Config::AnimatorState>& animation,
-                               const std::string& curr_state);
+            AnimationComponent(const std::map<std::string, AnimatorState>& animation, const std::string& curr_state);
             ~AnimationComponent();
 
-            Config::AnimatorState getAnimationData(std::string animation) const;
+            AnimatorState getAnimationData(std::string animation) const;
             std::string getCurrState() const;
             int getCurrFrameIndex() const;
             float getTimeOfFrame() const;
@@ -50,7 +49,7 @@ namespace Components
 
         protected:
         private:
-            std::map<std::string, Config::AnimatorState> _animation;
+            std::map<std::string, AnimatorState> _animation;
             std::string _curr_state;
             float _elapsed_time = 0.0f;
             std::chrono::high_resolution_clock::time_point _lastTime;

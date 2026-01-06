@@ -13,8 +13,6 @@
 #include <memory>
 #include <string>
 
-#include "CommonConfigStruct.hpp"
-#include "EntityFactory.hpp"
 #include "Registry.hpp"
 
 #define FRAME_RATE 60
@@ -37,7 +35,7 @@ namespace GameEngine
             // Accessor to configure the registry (add components/systems)
             Registry& getRegistry();
 
-            void setMap(Config::LevelCommonConfig commonConfigFile);
+            void setMap(std::vector<std::string> entitiesList);
             int getEntityId(const std::string& entityName) const;
             std::string getEntityName(const int id) const;
             std::unordered_map<std::string, int> getEntityMap() const;
