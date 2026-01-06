@@ -9,7 +9,6 @@
 #include "IAudio.hpp"
 #include "IKeyMapping.hpp"
 #include "IRender.hpp"
-#include "Logs.hpp"
 #include "raylib.h"
 
 namespace Graphic

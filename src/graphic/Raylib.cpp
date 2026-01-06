@@ -69,7 +69,6 @@ void Graphic::Raylib::addTexture(std::string const& spritePath, std::string cons
     if (this->_textures.find(spriteName) == this->_textures.end()) {
         this->_textures[spriteName] = LoadTexture(spritePath.c_str());
         if (this->_textures[spriteName].id == 0) {
-            LOG_ERROR("Failed to load texture '{}' from path: {}", spriteName, spritePath);
             unsigned int w        = sectionSize.first ? sectionSize.first : 64;
             unsigned int h        = sectionSize.second ? sectionSize.second : 64;
             Color purple          = {255, 0, 255, 255};
@@ -77,10 +76,6 @@ void Graphic::Raylib::addTexture(std::string const& spritePath, std::string cons
             Texture2D placeholder = LoadTextureFromImage(img);
             UnloadImage(img);
             this->_textures[spriteName] = placeholder;
-        }
-        else {
-            LOG_INFO("Successfully loaded texture '{}' from path: {} ({}x{})", spriteName, spritePath,
-                     this->_textures[spriteName].width, this->_textures[spriteName].height);
         }
     }
 }

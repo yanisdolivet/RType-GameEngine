@@ -12,7 +12,6 @@
 #include "AnimationComponent.hpp"
 #include "AnimationStruct.hpp"
 #include "DrawableComponent.hpp"
-#include "Logs.hpp"
 #include "Parallax.hpp"
 #include "Position.hpp"
 #include "Registry.hpp"

@@ -39,8 +39,6 @@ add_library(GameEngine STATIC
 
     src/init/InitActionInput.cpp
 
-    src/logs/Logs.cpp
-
     src/systems/CollisionSystem.cpp
     src/systems/InputReleasedSystem.cpp
     src/systems/InputSystem.cpp
@@ -67,7 +65,6 @@ target_include_directories(GameEngine
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/systems/render_system>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/ecs/tppFiles>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/utils>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/logs>
         $<INSTALL_INTERFACE:include/GameEngine>
 
     PRIVATE
