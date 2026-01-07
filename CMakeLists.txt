@@ -90,7 +90,7 @@ target_link_libraries(GameEngine
 
 # Compiler Warnings
 if(MSVC)
-    target_compile_options(GameEngine PRIVATE /W4 /WX)
+    target_compile_options(GameEngine PRIVATE /W4)
 else()
     target_compile_options(GameEngine PRIVATE -Wall -Wextra -Werror)
 endif()
