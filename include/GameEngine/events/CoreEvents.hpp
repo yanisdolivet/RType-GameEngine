@@ -22,13 +22,6 @@ struct EventCollision
         std::size_t entityB;
 };
 
-struct EventShoot
-{
-        std::size_t shooterEntity;
-        int directionX;
-        int directionY;
-};
-
 struct EventEntityDeath
 {
         std::size_t killedEntityId;
@@ -56,7 +49,4 @@ struct EventRight
 
 struct EventLeftClick
 {
-        float x;
-        float y;
-        bool pressed;
 };

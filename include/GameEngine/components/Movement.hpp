@@ -2,19 +2,19 @@
 ** EPITECH PROJECT, 2025
 ** R-Type
 ** File description:
-** Mouvement
+** Movement
 */
 
 #pragma once
 
 namespace Components
 {
-    class Mouvement
+    class Movement
     {
         public:
-            Mouvement();
-            Mouvement(int vertical, int horizontal);
-            ~Mouvement();
+            Movement();
+            Movement(int vertical, int horizontal);
+            ~Movement();
 
             int getVertical() const;
             int getHorizontal() const;
@@ -22,7 +22,7 @@ namespace Components
             void setVertical(int vertical);
             void setHorizontal(int horizontal);
 
-            bool operator==(const Mouvement&) const;
+            bool operator==(const Movement&) const;
 
         private:
             int _vertical;

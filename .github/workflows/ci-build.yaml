@@ -16,7 +16,6 @@ jobs:
   check_compilation_linux:
     name: Check compilation on Linux
     runs-on: ubuntu-latest
-    if: github.repository != 'EpitechPGE3-2025/G-CPP-500-LYN-5-2-rtype-6'
 
     steps:
       - name: Install dependencies

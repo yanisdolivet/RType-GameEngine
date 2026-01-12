@@ -23,7 +23,7 @@ class AnimationSystem
     public:
         explicit AnimationSystem();
 
-        void operator()(Registry&, SparseArray<Components::DrawableComponent>& drawable,
+        void operator()(Registry&, double, SparseArray<Components::DrawableComponent>& drawable,
                         SparseArray<Components::Position>& positions,
                         SparseArray<Components::AnimationComponent>& animation,
                         SparseArray<Components::Parallax>& parallax) const;

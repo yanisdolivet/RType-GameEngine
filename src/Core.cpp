@@ -48,7 +48,7 @@ void GameEngine::Core::run()
 
     while (this->_isRunning) {
         this->_updateTime(lastFrameTime, frameDuration);
-        this->_registry.runSystems();
+        this->_registry.runSystems(_deltaTime);
     }
 }
 
@@ -85,9 +85,18 @@ void GameEngine::Core::_updateTime(std::chrono::steady_clock::time_point& lastFr
         std::this_thread::sleep_for(sleepTime);
         lastFrameTime += frameDuration; // Prevent drift
     }
-    else {
-        lastFrameTime = currentTime;
-    }
+    _deltaTime    = std::chrono::duration<double>(elapsed).count();
+    lastFrameTime = currentTime;
+}
+
+/**
+ * @brief Get deltaTime var
+ *
+ * @return double
+ */
+double GameEngine::Core::getDeltaTime()
+{
+    return _deltaTime;
 }
 
 void GameEngine::Core::setMap(std::vector<std::string> entitiesList)

@@ -20,7 +20,7 @@ InputSystem::InputSystem(std::shared_ptr<std::unordered_map<int, std::vector<std
  *
  * @param registry
  */
-void InputSystem::operator()(Registry& registry) const
+void InputSystem::operator()(Registry& registry, double) const
 {
     for (const auto& [key, actions] : *(this->_keymap)) {
         if (this->_keyDown(key)) { //! Changer pour utiliser celui de la lib graphique utilisée

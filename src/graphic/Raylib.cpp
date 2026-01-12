@@ -223,3 +223,19 @@ int Graphic::Raylib::stringtoKeyCode(const std::string& keyString) const
 
     return it->second;
 }
+
+void Graphic::Raylib::clearKeyMappings()
+{
+    this->_keymap->clear();
+}
+
+void Graphic::Raylib::clearKeyReleasedMappings()
+{
+    this->_keyReleasedMap->clear();
+}
+
+std::pair<float, float> Graphic::Raylib::getMousePosition() const
+{
+    Vector2 mousePos = GetMousePosition();
+    return std::make_pair(mousePos.x, mousePos.y);
+}

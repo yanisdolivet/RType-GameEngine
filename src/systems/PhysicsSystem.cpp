@@ -14,7 +14,7 @@
  * @param positions
  * @param velocities
  */
-void PhysicsSystem::operator()(Registry&, SparseArray<Components::Position>& positions,
+void PhysicsSystem::operator()(Registry&, double, SparseArray<Components::Position>& positions,
                                SparseArray<Components::Velocity> const& velocities) const
 {
     for (auto&& [pos, vel] : Zipper(positions, velocities)) {

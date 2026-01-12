@@ -53,13 +53,10 @@ std::unordered_map<std::string, ActionBinding> getActionBindings()
               },
               nullptr}},
             {"LeftClick",
-             {.onPress =
-                  [](Registry& r) {
-                      r.publish(EventLeftClick{200.0, 230.0, true});
-                  },
+             {.onPress = nullptr,
               .onRelease =
                   [](Registry& r) {
-                      r.publish(EventLeftClick{200.0, 230.0, false});
+                      r.publish(EventLeftClick{});
                   }}},
             {"Shoot",
              {// ! Maybe change but currently neeed network id at the time of binding

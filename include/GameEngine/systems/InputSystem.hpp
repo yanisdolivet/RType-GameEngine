@@ -24,7 +24,7 @@ class InputSystem
             std::shared_ptr<std::unordered_map<int, std::vector<std::function<void(Registry&)>>>> keymap,
             std::function<bool(int key)> IsKeyDown);
 
-        void operator()(Registry& registry) const;
+        void operator()(Registry& registry, double) const;
 
     private:
         std::shared_ptr<std::unordered_map<int, std::vector<std::function<void(Registry&)>>>> _keymap;
