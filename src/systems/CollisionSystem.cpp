@@ -14,7 +14,7 @@
  *
  * @param registry
  * @param positions
- * @param hitboxes
+ * @param colliders
  */
 void CollisionSystem::operator()(Registry& registry, double, SparseArray<Components::Position>& positions,
                                  SparseArray<Components::Collider> const& colliders) const

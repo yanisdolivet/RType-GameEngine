@@ -108,6 +108,14 @@ Component& Registry::getSpecificComponent(Entity const& entity)
     }
 }
 
+/**
+ * @brief Check if an entity has a specific component
+ *
+ * @tparam Component
+ * @param entity
+ * @return true
+ * @return false
+ */
 template <class Component>
 bool Registry::entity_has_component(Entity entity) const
 {

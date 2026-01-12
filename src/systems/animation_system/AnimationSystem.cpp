@@ -13,7 +13,7 @@ AnimationSystem::AnimationSystem()
 
 void AnimationSystem::operator()(Registry&, double, SparseArray<Components::DrawableComponent>& drawable,
                                  SparseArray<Components::Position>& positions,
-                                 SparseArray<Components::AnimationComponent>& animaton,
+                                 SparseArray<Components::AnimationComponent>& animation,
                                  SparseArray<Components::Parallax>& parallax) const
 {
     // PARALLAX ANIMATION
@@ -27,7 +27,7 @@ void AnimationSystem::operator()(Registry&, double, SparseArray<Components::Draw
     }
 
     // BASIC SPRITE ANIMATION
-    for (auto&& [dr, an] : Zipper(drawable, animaton)) {
+    for (auto&& [dr, an] : Zipper(drawable, animation)) {
         AnimatorState animState = an.getAnimationData(an.getCurrState());
         int curframe            = an.getCurrFrameIndex();
         an.updateTime();
