@@ -99,18 +99,20 @@ endif()
 add_library(GameEngine::GameEngine ALIAS GameEngine)
 
 # clang-format target
-find_program(FORMAT_BIN clang-format)
+if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
+    find_program(FORMAT_BIN clang-format)
 
-if (FORMAT_BIN)
-    add_custom_target(format
-        COMMAND find src include
-                -type f
-                -name "*.*pp"
-                -exec ${FORMAT_BIN} -i {} +
+    if (FORMAT_BIN)
+        add_custom_target(format
+            COMMAND find src include
+                    -type f
+                    -name "*.*pp"
+                    -exec ${FORMAT_BIN} -i {} +
 
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-        COMMENT "Formatting all source files using find..."
-    )
-else()
-    message(WARNING "clang-format not found!")
+            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+            COMMENT "Formatting all source files using find..."
+        )
+    else()
+        message(WARNING "clang-format not found!")
+    endif()
 endif()
