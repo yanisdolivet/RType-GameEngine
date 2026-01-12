@@ -8,7 +8,7 @@
 #pragma once
 
 #include "IndexedZipper.hpp"
-#include "Mouvement.hpp"
+#include "Movement.hpp"
 #include "Registry.hpp"
 #include "Speed.hpp"
 #include "Velocity.hpp"
@@ -16,6 +16,6 @@
 class MovementSystem
 {
     public:
-        void operator()(Registry&, SparseArray<Components::Mouvement>& mouvements,
+        void operator()(Registry&, double, SparseArray<Components::Movement>& movements,
                         SparseArray<Components::Velocity>& velocities, SparseArray<Components::Speed>& speeds) const;
 };

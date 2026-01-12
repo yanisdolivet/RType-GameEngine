@@ -44,10 +44,10 @@ void Registry::killEntity(Entity const& e)
  * @brief Run all registered systems
  *
  */
-void Registry::runSystems()
+void Registry::runSystems(double deltaTime)
 {
     for (auto& system : this->_systems) {
-        system(*this);
+        system(*this, deltaTime);
     }
 }
 

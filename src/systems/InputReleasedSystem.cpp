@@ -19,7 +19,7 @@ InputReleasedSystem::InputReleasedSystem(
  *
  * @param registry
  */
-void InputReleasedSystem::operator()(Registry& registry) const
+void InputReleasedSystem::operator()(Registry& registry, double) const
 {
     for (const auto& [key, actions] : *(this->_keymap)) {
         if (this->_keyReleasedFunc(key)) {

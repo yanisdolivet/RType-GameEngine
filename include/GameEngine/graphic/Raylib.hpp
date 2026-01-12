@@ -188,6 +188,25 @@ namespace Graphic
              */
             int stringtoKeyCode(const std::string& keyString) const override;
 
+            /**
+             * @brief Clear all key mappings
+             *
+             */
+            void clearKeyMappings() override;
+
+            /**
+             * @brief Clear all key released mappings
+             *
+             */
+            void clearKeyReleasedMappings() override;
+
+            /**
+             * @brief Get the current mouse position
+             *
+             * @return std::pair<float, float> The (x, y) coordinates of the mouse
+             */
+            std::pair<float, float> getMousePosition() const override;
+
         private:
             /**
              * @brief A map storing textures with their associated names

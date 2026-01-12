@@ -12,6 +12,6 @@
 class PhysicsSystem
 {
     public:
-        void operator()(Registry& registry, SparseArray<Components::Position>& positions,
+        void operator()(Registry& registry, double, SparseArray<Components::Position>& positions,
                         SparseArray<Components::Velocity> const& velocities) const;
 };

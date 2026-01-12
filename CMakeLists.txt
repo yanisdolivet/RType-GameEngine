@@ -26,7 +26,7 @@ add_library(GameEngine STATIC
     src/components/DrawableComponent.cpp
     src/components/DynamicScale.cpp
     src/components/EntityType.cpp
-    src/components/Mouvement.cpp
+    src/components/Movement.cpp
     src/components/Parallax.cpp
     src/components/Position.cpp
     src/components/Speed.cpp
@@ -97,3 +97,20 @@ endif()
 
 # Alias to refer as GameEngine::GameEngine
 add_library(GameEngine::GameEngine ALIAS GameEngine)
+
+# clang-format target
+find_program(FORMAT_BIN clang-format)
+
+if (FORMAT_BIN)
+    add_custom_target(format
+        COMMAND find src include
+                -type f
+                -name "*.*pp"
+                -exec ${FORMAT_BIN} -i {} +
+
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        COMMENT "Formatting all source files using find..."
+    )
+else()
+    message(WARNING "clang-format not found!")
+endif()

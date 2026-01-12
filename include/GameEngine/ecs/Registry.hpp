@@ -34,6 +34,9 @@ class Registry
         template <class Component>
         Component& getSpecificComponent(Entity const& entity);
 
+        template <class Component>
+        bool entity_has_component(Entity entity) const;
+
         Entity spawnEntity();
 
         Entity entityFromIndex(std::size_t idx);
@@ -49,7 +52,7 @@ class Registry
         template <class... Components, typename Function>
         void addSystem(Function&& f);
 
-        void runSystems();
+        void runSystems(double deltaTime);
 
         /* --- Système de Messages Simplifié --- */
         template <typename T>
@@ -64,7 +67,7 @@ class Registry
         std::unordered_map<std::type_index, std::any> _componentsArrays;
         std::size_t _entitiesCount = 0;
 
-        std::vector<std::function<void(Registry&)>> _systems;
+        std::vector<std::function<void(Registry&, double)>> _systems;
 
         // List of functions to call when an entity is killed
         // Each function knows how to remove one specific type of component

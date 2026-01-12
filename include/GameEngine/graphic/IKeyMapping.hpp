@@ -35,6 +35,12 @@ namespace Graphic
 
             virtual int stringtoKeyCode(const std::string& keyString) const = 0;
 
+            virtual void clearKeyMappings() = 0;
+
+            virtual void clearKeyReleasedMappings() = 0;
+
+            virtual std::pair<float, float> getMousePosition() const = 0;
+
         protected:
         private:
     };

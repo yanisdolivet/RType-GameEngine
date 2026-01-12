@@ -35,6 +35,7 @@ namespace GameEngine
             // Accessor to configure the registry (add components/systems)
             Registry& getRegistry();
 
+            double getDeltaTime();
             void setMap(std::vector<std::string> entitiesList);
             int getEntityId(const std::string& entityName) const;
             std::string getEntityName(const int id) const;

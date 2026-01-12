@@ -14,7 +14,7 @@ RenderSystem::RenderSystem(std::shared_ptr<Graphic::IRender> graphic) : _graphic
 {
 }
 
-void RenderSystem::operator()(Registry& reg, SparseArray<Components::Position> const& positions,
+void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Position> const& positions,
                               SparseArray<Components::SpriteComponent> const& sprite,
                               SparseArray<Components::DrawableComponent> const& drawable) const
 {
