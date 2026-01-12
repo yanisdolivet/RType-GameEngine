@@ -103,7 +103,7 @@ find_program(FORMAT_BIN clang-format)
 
 if (FORMAT_BIN)
     add_custom_target(format
-        COMMAND find client server common
+        COMMAND find src include
                 -type f
                 -name "*.*pp"
                 -exec ${FORMAT_BIN} -i {} +

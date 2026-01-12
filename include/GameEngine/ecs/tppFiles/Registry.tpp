@@ -119,8 +119,6 @@ bool Registry::entity_has_component(Entity entity) const
     return components[entity].has_value();
 }
 
-
-
 /**
  * @brief Remove a component of type Component from a given entity
  *
