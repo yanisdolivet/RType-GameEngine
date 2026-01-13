@@ -27,6 +27,11 @@ GameEngine::Core::~Core()
 {
 }
 
+std::chrono::steady_clock::time_point GameEngine::Core::getTimer() const
+{
+    return this->_lastTime;
+}
+
 /**
  * @brief Accessor to configure the registry (add components/systems)
  *

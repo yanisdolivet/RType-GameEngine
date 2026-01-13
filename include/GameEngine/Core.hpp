@@ -42,6 +42,8 @@ namespace GameEngine
             std::string getEntityName(const int id) const;
             std::unordered_map<std::string, int> getEntityMap() const;
 
+            std::chrono::steady_clock::time_point getTimer() const;
+
         private:
             void setEntity(const std::string& entityName);
             void _updateTime(std::chrono::steady_clock::time_point& lastFrameTime,
