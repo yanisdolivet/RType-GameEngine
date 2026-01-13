@@ -13,10 +13,15 @@ namespace Components
     {
         public:
             Parallax();
+            Parallax(float speed);
             ~Parallax();
+
+            float getSpeed() const;
+            void setSpeed(float speed);
 
         protected:
         private:
+            float _speed = 1.0f;
     };
 
 } // namespace Components

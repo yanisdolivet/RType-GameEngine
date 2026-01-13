@@ -19,8 +19,9 @@ void AnimationSystem::operator()(Registry&, double, SparseArray<Components::Draw
     // PARALLAX ANIMATION
     for (auto&& [dr, pos, pr] : Zipper(drawable, positions, parallax)) {
         float maxPos = -(dr.getSourceRect().width * dr.getScale().x);
+        pos.setX(pos.getX() - pr.getSpeed());
         if (pos.getX() <= maxPos) {
-            float newPos = dr.getSourceRect().width;
+            float newPos = dr.getSourceRect().width * dr.getScale().x;
             pos.setX(newPos);
         }
         continue;
