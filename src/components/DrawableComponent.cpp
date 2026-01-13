@@ -13,7 +13,7 @@ namespace Components
     {
     }
 
-    DrawableComponent::DrawableComponent(Rectangle source_rect, bool is_visible, int layer)
+    DrawableComponent::DrawableComponent(GameEngine::Math::Rectangle source_rect, bool is_visible, int layer)
         : _source_rect(source_rect), _is_visible(is_visible), _layer(layer)
     {
     }
@@ -22,7 +22,7 @@ namespace Components
     {
     }
 
-    Rectangle DrawableComponent::getSourceRect() const
+    GameEngine::Math::Rectangle DrawableComponent::getSourceRect() const
     {
         return this->_source_rect;
     }
@@ -42,7 +42,7 @@ namespace Components
         this->_is_visible = visible;
     }
 
-    void DrawableComponent::setRectange(Rectangle new_source_rect)
+    void DrawableComponent::setRectange(GameEngine::Math::Rectangle new_source_rect)
     {
         this->_source_rect = new_source_rect;
     }

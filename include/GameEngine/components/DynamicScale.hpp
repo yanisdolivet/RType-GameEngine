@@ -9,6 +9,7 @@
 
 #include <string>
 
+#include "EngineMath.hpp"
 #include "raylib.h"
 
 namespace Components
@@ -17,13 +18,13 @@ namespace Components
     {
         public:
             DynamicScale();
-            DynamicScale(std::string x, std::string y, Rectangle source_rect);
+            DynamicScale(std::string x, std::string y, GameEngine::Math::Rectangle source_rect);
             ~DynamicScale();
 
             float getScaleX();
             float getScaleY();
 
-            Vector2 getScale();
+            GameEngine::Math::Vector2 getScale();
 
         protected:
         private:

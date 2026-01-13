@@ -13,7 +13,7 @@ Components::DynamicScale::DynamicScale()
 {
 }
 
-Components::DynamicScale::DynamicScale(std::string x, std::string y, Rectangle source_rect)
+Components::DynamicScale::DynamicScale(std::string x, std::string y, GameEngine::Math::Rectangle source_rect)
 {
 
     if (x == "same_as_y") {
@@ -52,9 +52,9 @@ float Components::DynamicScale::getScaleY()
     return this->_y;
 }
 
-Vector2 Components::DynamicScale::getScale()
+GameEngine::Math::Vector2 Components::DynamicScale::getScale()
 {
-    Vector2 scale;
+    GameEngine::Math::Vector2 scale;
     scale.x = this->_x;
     scale.y = this->_y;
     return scale;

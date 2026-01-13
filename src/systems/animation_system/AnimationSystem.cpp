@@ -50,7 +50,7 @@ void AnimationSystem::operator()(Registry& registry, double, SparseArray<Compone
 
         // Changing frame
         if (an.getTimeOfFrame() >= animState.animation.duration) {
-            Rectangle newRect;
+            GameEngine::Math::Rectangle newRect;
             newRect.width  = animState.size.x;
             newRect.height = animState.size.y;
             newRect.x      = curframe * animState.offset.x;
