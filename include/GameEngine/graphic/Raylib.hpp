@@ -79,6 +79,14 @@ namespace Graphic
                             std::pair<unsigned int, unsigned int> sectionSize) override;
 
             /**
+             * @brief Add a font from a file path with a given name
+             *
+             * @param fontPath The file path to the font
+             * @param fontName The name to associate with the font
+             */
+            void addFont(std::string const& fontPath, std::string const& fontName) override;
+
+            /**
              * @brief Render a sprite at a given position using a specific section of the texture
              *
              * @param spriteName The name of the texture to render
@@ -89,6 +97,17 @@ namespace Graphic
             void renderSprite(std::string const& spriteName, std::pair<float, float> position,
                               std::pair<float, float> spriteSection, std::pair<unsigned int, unsigned int> sectionSize,
                               std::pair<float, float> scale) override;
+
+            /**
+             * @brief Render text at a given position with specified font, size, and color
+             * @param content The text content to render
+             * @param fontName The name of the font to use
+             * @param position The (x, y) position to render the text
+             * @param size The font size
+             * @param color The color of the text as an (R, G, B, A) tuple
+             */
+            void renderText(const std::string& content, const std::string& fontName, std::pair<float, float> position,
+                            int size, std::tuple<uint8_t, uint8_t, uint8_t, uint8_t> color, float spacing) override;
 
             /**
              * @brief Add a sound from a file path with a given name
@@ -219,6 +238,11 @@ namespace Graphic
              *
              */
             std::unordered_map<std::string, Texture2D> _textures;
+
+            /**
+             * @brief A map storing fonts with their associated names
+             */
+            std::unordered_map<std::string, Font> _fonts;
 
             /**
              * @brief A map storing sounds with their associated names

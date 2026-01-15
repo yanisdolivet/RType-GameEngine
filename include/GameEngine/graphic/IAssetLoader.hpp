@@ -20,6 +20,8 @@ namespace Graphic
             virtual void addTexture(std::string const& spritePath, std::string const& spriteName,
                                     std::pair<unsigned int, unsigned int> sectionSize) = 0;
 
+            virtual void addFont(std::string const& fontPath, std::string const& fontName) = 0;
+
         protected:
         private:
     };
