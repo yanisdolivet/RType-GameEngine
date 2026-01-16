@@ -11,7 +11,7 @@ AudioSystem::AudioSystem(std::shared_ptr<Graphic::IAudio> graphic) : _graphic(gr
 {
 }
 
-void AudioSystem::operator()(Registry&, double)
+void AudioSystem::operator()(Registry&, double) const
 {
     this->_graphic->updateMusicStream();
 }

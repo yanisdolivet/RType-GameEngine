@@ -17,7 +17,7 @@ class AudioSystem
     public:
         explicit AudioSystem(std::shared_ptr<Graphic::IAudio> graphic);
 
-        void operator()(Registry& registry, double);
+        void operator()(Registry& registry, double) const;
 
     private:
         std::shared_ptr<Graphic::IAudio> _graphic;
