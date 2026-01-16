@@ -21,6 +21,7 @@ void RenderSystem::imgui() const
     // Draw your ImGui windows
     ImGui::Begin("Debug Window");
     ImGui::Text("Hello from Dear ImGui!");
+    ImGui::ShowMetricsWindow();
     if (ImGui::Button("Click Me")) {
         // Button logic
     }
