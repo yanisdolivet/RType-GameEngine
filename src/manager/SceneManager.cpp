@@ -7,6 +7,10 @@
 
 #include "SceneManager.hpp"
 
+SceneManager::SceneManager()
+{
+}
+
 void SceneManager::loadSceneFromMap(
     const std::map<std::string,
                    std::tuple<std::function<void()>, std::function<void(std::string)>, std::function<void()>>>& scenes)

@@ -15,7 +15,7 @@
 class SceneManager
 {
     public:
-        SceneManager()  = default;
+        SceneManager();
         ~SceneManager() = default;
 
         /**
@@ -47,5 +47,6 @@ class SceneManager
     protected:
     private:
         std::map<std::string,
-                 std::tuple<std::function<void()>, std::function<void(std::string)>, std::function<void()>>>& _scenes;
+                 std::tuple<std::function<void()>, std::function<void(std::string)>, std::function<void()>>>
+            _scenes;
 };
