@@ -49,7 +49,7 @@ add_library(GameEngine STATIC
     src/systems/PhysicsSystem.cpp
     src/systems/animation_system/AnimationSystem.cpp
     src/systems/render_system/RenderSystem.cpp
-    src/systems/render_system/ResourceManager.cpp
+    src/manager/ResourceManager.cpp
     src/systems/InputPressedSystem.cpp
     src/components/TextComponent.cpp
     src/systems/render_system/AudioSystem.cpp
@@ -70,6 +70,7 @@ target_include_directories(GameEngine
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/events>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/event_subscriptions>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/graphic>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/manager>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/init>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/systems>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/systems/animation_system>

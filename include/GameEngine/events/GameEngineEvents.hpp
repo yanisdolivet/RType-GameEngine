@@ -52,3 +52,8 @@ struct EventRight
 struct EventLeftClick
 {
 };
+
+struct EventChangeScene
+{
+        std::string sceneName;
+};
