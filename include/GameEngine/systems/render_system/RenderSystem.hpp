@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <imgui.h>
 #include <memory>
 
 #include "DrawableComponent.hpp"
@@ -19,6 +20,7 @@
 #include "SparseArray.hpp"
 #include "SpriteComponent.hpp"
 #include "TextComponent.hpp"
+#include "rlImGui.h"
 
 class RenderSystem
 {
@@ -27,6 +29,8 @@ class RenderSystem
 
         void operator()(Registry&, double, SparseArray<Components::Position> const& positions,
                         SparseArray<Components::DrawableComponent> const& drawable) const;
+
+        void imgui() const;
 
     private:
         std::shared_ptr<Graphic::IRender> _graphic;
