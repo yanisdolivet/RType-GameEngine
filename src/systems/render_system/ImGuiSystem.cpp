@@ -14,6 +14,7 @@ void ImGuiSystem::operator()(Registry& registry, double) const
     // Draw your ImGui windows
     ImGui::Begin("Debug Window");
     ImGui::Text("Hello from Dear ImGui!");
+    ImGui::Text("FrameRate : %.1f FPS", ImGui::GetIO().Framerate);
     ImGui::ShowDemoWindow();
     ImGui::End();
 
