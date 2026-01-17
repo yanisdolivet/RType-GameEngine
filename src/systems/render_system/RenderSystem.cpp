@@ -7,6 +7,7 @@
 
 #include "RenderSystem.hpp"
 
+
 #include <algorithm>
 #include <vector>
 
@@ -39,6 +40,7 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
 
     for (auto&& [idx, pos, sp, dr] : IndexedZipper(positions, sprite, drawable)) {
         if (dr.isVisible()) {
+            std::cout << "Rendering entity at index: " + std::to_string(idx) + " on layer: " + std::to_string(dr.getLayer()) << std::endl;
             Components::Scale scale = Components::Scale();
             try {
                 scale = reg.getSpecificComponent<Components::Scale>(reg.entityFromIndex(idx));
