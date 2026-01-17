@@ -42,6 +42,7 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
         if (dr.isVisible()) {
             if (reg.entity_has_component<Components::Scale>(reg.entityFromIndex(idx))) {
                 auto &scale = reg.getSpecificComponent<Components::Scale>(reg.entityFromIndex(idx));
+                std::cout << "Entity " << idx << " has scale (" << scale.getX() << ", " << scale.getY() << ")\n";
                 renderQueue.push_back({idx, dr.getLayer(), &pos, &sp, &dr, &scale});
             } else {
                 Components::Scale defaultScale(1.0f, 1.0f);
@@ -66,7 +67,7 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
         std::pair<float, float> scale                     = {spriteScale.getX(), spriteScale.getY()};
         std::cout << "Rendering entity " << renderData.index << " at position (" << position.first << ", "
                   << position.second << ") with scale (" << scale.first << ", " << scale.second << ")\n";
-        this->_graphic->renderSprite(renderData.sp->getResourceId(), position, spriteSection, sizeSection, {1.0, 1.0});
+        this->_graphic->renderSprite(renderData.sp->getResourceId(), position, spriteSection, sizeSection, scale);
     }
 
     this->_graphic->displayWindow();
