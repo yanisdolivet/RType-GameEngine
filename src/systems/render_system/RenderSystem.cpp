@@ -14,22 +14,6 @@ RenderSystem::RenderSystem(std::shared_ptr<Graphic::IRender> graphic) : _graphic
 {
 }
 
-void RenderSystem::imgui() const
-{
-    rlImGuiBegin();
-
-    // Draw your ImGui windows
-    ImGui::Begin("Debug Window");
-    ImGui::Text("Hello from Dear ImGui!");
-    ImGui::ShowMetricsWindow();
-    if (ImGui::Button("Click Me")) {
-        // Button logic
-    }
-    ImGui::End();
-
-    rlImGuiEnd();
-}
-
 void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Position> const& positions,
                               SparseArray<Components::DrawableComponent> const& drawable) const
 {
@@ -97,7 +81,8 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
                                    txt.getSpacing());
     }
 
-    this->imgui();
+    ImGuiSystem imgui;
+    imgui(reg, double());
 
     this->_graphic->displayWindow();
 }
