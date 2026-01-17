@@ -7,7 +7,7 @@
 
 #include "Scale.hpp"
 
-Components::Scale::Scale() : _x(1), _y(1)
+Components::Scale::Scale() : _x(1.0f), _y(1.0f)
 {
 }
 
@@ -15,26 +15,26 @@ Components::Scale::~Scale()
 {
 }
 
-Components::Scale::Scale(int x, int y) : _x(x), _y(y)
+Components::Scale::Scale(float x, float y) : _x(x), _y(y)
 {
 }
 
-int Components::Scale::getX() const
+float Components::Scale::getX() const
 {
     return _x;
 }
 
-int Components::Scale::getY() const
+float Components::Scale::getY() const
 {
     return _y;
 }
 
-void Components::Scale::setX(int x)
+void Components::Scale::setX(float x)
 {
     _x = x;
 }
 
-void Components::Scale::setY(int y)
+void Components::Scale::setY(float y)
 {
     _y = y;
 }

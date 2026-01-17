@@ -15,19 +15,19 @@ namespace Components
     {
         public:
             Scale();
-            Scale(int x, int y);
+            Scale(float x, float y);
             ~Scale();
 
-            int getX() const;
-            int getY() const;
+            float getX() const;
+            float getY() const;
 
-            void setX(int x);
-            void setY(int y);
+            void setX(float x);
+            void setY(float y);
 
             bool operator==(const Scale&) const;
 
         private:
-            int _x;
-            int _y;
+            float _x;
+            float _y;
     };
 } // namespace Components
