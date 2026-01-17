@@ -9,13 +9,12 @@
 
 namespace Components
 {
-    DrawableComponent::DrawableComponent()
-        : _source_rect({0, 0, 0, 0}), _is_visible(true), _scale({1.0f, 1.0f}), _layer(0)
+    DrawableComponent::DrawableComponent() : _source_rect({0, 0, 0, 0}), _is_visible(true), _layer(0)
     {
     }
 
-    DrawableComponent::DrawableComponent(Rectangle source_rect, bool is_visible, Vector2 scale, int layer)
-        : _source_rect(source_rect), _is_visible(is_visible), _scale(scale), _layer(layer)
+    DrawableComponent::DrawableComponent(Rectangle source_rect, bool is_visible, int layer)
+        : _source_rect(source_rect), _is_visible(is_visible), _layer(layer)
     {
     }
 
@@ -33,11 +32,6 @@ namespace Components
         return this->_is_visible;
     }
 
-    Vector2 DrawableComponent::getScale() const
-    {
-        return this->_scale;
-    }
-
     int DrawableComponent::getLayer() const
     {
         return this->_layer;
@@ -51,11 +45,6 @@ namespace Components
     void DrawableComponent::setRectange(Rectangle new_source_rect)
     {
         this->_source_rect = new_source_rect;
-    }
-
-    void DrawableComponent::setScale(Vector2 scale)
-    {
-        this->_scale = scale;
     }
 
     void DrawableComponent::setLayer(int layer)

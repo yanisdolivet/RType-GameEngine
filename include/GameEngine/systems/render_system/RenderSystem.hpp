@@ -15,6 +15,7 @@
 #include "IndexedZipper.hpp"
 #include "Position.hpp"
 #include "Registry.hpp"
+#include "Scale.hpp"
 #include "SparseArray.hpp"
 #include "SpriteComponent.hpp"
 

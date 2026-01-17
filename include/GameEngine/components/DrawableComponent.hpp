@@ -15,17 +15,15 @@ namespace Components
     {
         public:
             DrawableComponent();
-            DrawableComponent(Rectangle source_rect, bool is_visible, Vector2 scale, int layer = 0);
+            DrawableComponent(Rectangle source_rect, bool is_visible, int layer = 0);
             ~DrawableComponent();
 
             Rectangle getSourceRect() const;
             bool isVisible() const;
-            Vector2 getScale() const;
             int getLayer() const;
 
             void changeVisibility(bool visible);
             void setRectange(Rectangle new_source_rect);
-            void setScale(Vector2 scale);
             void setOrigin(float x, float y);
             void setLayer(int layer);
 
@@ -33,8 +31,7 @@ namespace Components
         private:
             Rectangle _source_rect;
             bool _is_visible;
-            Vector2 _scale = {1.0, 1.0};
-            int _layer     = 0; // Lower values render first (background), higher values render last (foreground)
+            int _layer = 0; // Lower values render first (background), higher values render last (foreground)
     };
 
 } // namespace Components

@@ -31,6 +31,7 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
             const Components::Position* pos;
             const Components::SpriteComponent* sp;
             const Components::DrawableComponent* dr;
+            const Components::Scale* scale;
     };
 
     std::vector<RenderData> renderQueue;
@@ -38,7 +39,14 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
 
     for (auto&& [idx, pos, sp, dr] : IndexedZipper(positions, sprite, drawable)) {
         if (dr.isVisible()) {
-            renderQueue.push_back({idx, dr.getLayer(), &pos, &sp, &dr});
+            Components::Scale scale;
+            try {
+                scale = reg.getSpecificComponent<Components::Scale>(reg.entityFromIndex(idx));
+            }
+            catch (const std::logic_error&) {
+                continue;
+            }
+            renderQueue.push_back({idx, dr.getLayer(), &pos, &sp, &dr, &scale});
         }
     }
 
@@ -51,12 +59,11 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
     for (const auto& renderData : renderQueue) {
         std::pair<float, float> position                  = {renderData.pos->getX(), renderData.pos->getY()};
         Rectangle spriteRect                              = renderData.dr->getSourceRect();
-        Vector2 spriteScale                               = renderData.dr->getScale();
+        Components::Scale spriteScale                     = *renderData.scale;
         std::pair<unsigned int, unsigned int> sizeSection = {static_cast<unsigned int>(spriteRect.width),
                                                              static_cast<unsigned int>(spriteRect.height)};
         std::pair<float, float> spriteSection             = {spriteRect.x, spriteRect.y};
-        std::pair<float, float> scale                     = {spriteScale.x, spriteScale.y};
-
+        std::pair<float, float> scale                     = {spriteScale.getX(), spriteScale.getY()};
         this->_graphic->renderSprite(renderData.sp->getResourceId(), position, spriteSection, sizeSection, scale);
     }
 

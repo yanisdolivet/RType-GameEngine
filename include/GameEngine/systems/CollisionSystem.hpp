@@ -10,6 +10,7 @@
 #include "IndexedZipper.hpp"
 #include "Position.hpp"
 #include "Registry.hpp"
+#include "Scale.hpp"
 
 class CollisionSystem
 {
