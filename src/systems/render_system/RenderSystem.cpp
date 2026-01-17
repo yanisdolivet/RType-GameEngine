@@ -39,7 +39,7 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
 
     for (auto&& [idx, pos, sp, dr] : IndexedZipper(positions, sprite, drawable)) {
         if (dr.isVisible()) {
-            Components::Scale scale;
+            Components::Scale scale = Components::Scale();
             try {
                 scale = reg.getSpecificComponent<Components::Scale>(reg.entityFromIndex(idx));
             }

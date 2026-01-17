@@ -21,8 +21,8 @@ void CollisionSystem::operator()(Registry& registry, double, SparseArray<Compone
 {
     for (auto&& [idxA, posA, colliderA] : IndexedZipper(positions, colliders)) {
         for (auto&& [idxB, posB, colliderB] : IndexedZipper(positions, colliders)) {
-            Components::Scale scaleA;
-            Components::Scale scaleB;
+            Components::Scale scaleA = Components::Scale();
+            Components::Scale scaleB = Components::Scale();
             try {
                 scaleA = registry.getSpecificComponent<Components::Scale>(registry.entityFromIndex(idxA));
                 scaleB = registry.getSpecificComponent<Components::Scale>(registry.entityFromIndex(idxB));

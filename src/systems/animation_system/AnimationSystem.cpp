@@ -18,7 +18,7 @@ void AnimationSystem::operator()(Registry& registry, double, SparseArray<Compone
 {
     // PARALLAX ANIMATION
     for (auto&& [idx, dr, pos, pr] : IndexedZipper(drawable, positions, parallax)) {
-        Components::Scale scale;
+        Components::Scale scale = Components::Scale();
         try {
             scale = registry.getSpecificComponent<Components::Scale>(registry.entityFromIndex(idx));
         }
