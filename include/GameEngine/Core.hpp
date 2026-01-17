@@ -29,6 +29,7 @@ namespace GameEngine
 
             // Runs the main game loop
             void run();
+            void update();
             void stop();
             void start();
 

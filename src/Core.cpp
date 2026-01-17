@@ -53,6 +53,19 @@ void GameEngine::Core::run()
 }
 
 /**
+ * @brief Update the game loop with a non blocking way (one tick)
+ *
+ */
+void GameEngine::Core::update()
+{
+    auto frameDuration = FRAME_DURATION;
+    auto lastFrameTime = std::chrono::steady_clock::now();
+
+    this->_updateTime(lastFrameTime, frameDuration);
+    this->_registry.runSystems(this->_deltaTime);
+}
+
+/**
  * @brief Stops the main game loop
  *
  */
