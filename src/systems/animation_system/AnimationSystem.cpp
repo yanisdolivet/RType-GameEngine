@@ -22,6 +22,8 @@ void AnimationSystem::operator()(Registry& registry, double, SparseArray<Compone
         if (registry.entity_has_component<Components::Scale>(registry.entityFromIndex(idx))) {
             scale = registry.getSpecificComponent<Components::Scale>(registry.entityFromIndex(idx));
         }
+        std::cout << "Entity " << idx << " has scale (" << scale.getX() << ", " << scale.getY() << ")\n";
+
         float maxPos = -(dr.getSourceRect().width * scale.getX());
         pos.setX(pos.getX() - pr.getSpeed());
         if (pos.getX() <= maxPos) {
