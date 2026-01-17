@@ -64,7 +64,9 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
                                                              static_cast<unsigned int>(spriteRect.height)};
         std::pair<float, float> spriteSection             = {spriteRect.x, spriteRect.y};
         std::pair<float, float> scale                     = {spriteScale.getX(), spriteScale.getY()};
-        this->_graphic->renderSprite(renderData.sp->getResourceId(), position, spriteSection, sizeSection, scale);
+        std::cout << "Rendering entity " << renderData.index << " at position (" << position.first << ", "
+                  << position.second << ") with scale (" << scale.first << ", " << scale.second << ")\n";
+        this->_graphic->renderSprite(renderData.sp->getResourceId(), position, spriteSection, sizeSection, {1.0, 1.0});
     }
 
     this->_graphic->displayWindow();
