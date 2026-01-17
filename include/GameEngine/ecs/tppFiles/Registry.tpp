@@ -203,15 +203,3 @@ void Registry::publish(T const& event)
         function(event);
     }
 }
-
-void Registry::disableSystem(std::size_t systemIndex)
-{
-    if (systemIndex < this->_systems.size()) {
-        this->_systems.erase(this->_systems.begin() + systemIndex);
-    }
-}
-
-std::vector<std::function<void(Registry&, double)>>& Registry::getSystems()
-{
-    return this->_systems;
-}

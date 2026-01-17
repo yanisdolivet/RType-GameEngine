@@ -54,9 +54,7 @@ class Registry
 
         void runSystems(double deltaTime);
 
-        std::vector<std::function<void(Registry&, double)>>& getSystems();
-
-        void disableSystem(std::size_t systemIndex);
+        std::vector<std::function<void(Registry&, double)>>& getAllSystem();
 
         /* --- Système de Messages Simplifié --- */
         template <typename T>

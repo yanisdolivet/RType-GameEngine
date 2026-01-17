@@ -60,3 +60,13 @@ std::size_t Registry::getEntitiesCount() const
 {
     return this->_entitiesCount;
 }
+
+/**
+ * @brief Get all registered systems
+ *
+ * @return std::vector<std::function<void(Registry&, double)>>&
+ */
+std::vector<std::function<void(Registry&, double)>>& Registry::getAllSystem()
+{
+    return this->_systems;
+}
