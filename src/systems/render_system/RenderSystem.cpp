@@ -10,8 +10,10 @@
 #include <algorithm>
 #include <vector>
 
-RenderSystem::RenderSystem(std::shared_ptr<Graphic::IRender> graphic) : _graphic(graphic)
+RenderSystem::RenderSystem(std::shared_ptr<Graphic::IRender> graphic, std::vector<std::string> systemName)
+    : _graphic(graphic)
 {
+    this->_imguiSystem = std::make_shared<ImGuiSystem>(systemName);
 }
 
 void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Position> const& positions,
@@ -81,8 +83,7 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
                                    txt.getSpacing());
     }
 
-    ImGuiSystem imgui(reg);
-    imgui(reg, double());
+    this->_imguiSystem->operator()(reg, double());
 
     this->_graphic->displayWindow();
 }

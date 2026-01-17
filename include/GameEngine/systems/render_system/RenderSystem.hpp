@@ -19,15 +19,15 @@
 #include "SparseArray.hpp"
 #include "SpriteComponent.hpp"
 #include "TextComponent.hpp"
-
 class RenderSystem
 {
     public:
-        explicit RenderSystem(std::shared_ptr<Graphic::IRender> graphic);
+        RenderSystem(std::shared_ptr<Graphic::IRender> graphic, std::vector<std::string> systemName);
 
         void operator()(Registry&, double, SparseArray<Components::Position> const& positions,
                         SparseArray<Components::DrawableComponent> const& drawable) const;
 
     private:
         std::shared_ptr<Graphic::IRender> _graphic;
+        std::shared_ptr<ImGuiSystem> _imguiSystem;
 };

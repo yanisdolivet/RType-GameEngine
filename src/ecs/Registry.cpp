@@ -46,8 +46,10 @@ void Registry::killEntity(Entity const& e)
  */
 void Registry::runSystems(double deltaTime)
 {
-    for (auto& system : this->_systems) {
-        system(*this, deltaTime);
+    for (std::size_t i = 0; i < this->_systems.size(); ++i) {
+        if (this->_systemsEnabled[i]) {
+            this->_systems[i](*this, deltaTime);
+        }
     }
 }
 
@@ -69,4 +71,42 @@ std::size_t Registry::getEntitiesCount() const
 std::vector<std::function<void(Registry&, double)>>& Registry::getAllSystem()
 {
     return this->_systems;
+}
+
+/**
+ * @brief Disable a specific system by index
+ *
+ * @param systemIndex
+ */
+void Registry::disableSpecificSystem(std::size_t systemIndex)
+{
+    if (systemIndex < this->_systemsEnabled.size()) {
+        this->_systemsEnabled[systemIndex] = false;
+    }
+}
+
+/**
+ * @brief Enable a specific system by index
+ *
+ * @param systemIndex
+ */
+void Registry::enableSpecificSystem(std::size_t systemIndex)
+{
+    if (systemIndex < this->_systemsEnabled.size()) {
+        this->_systemsEnabled[systemIndex] = true;
+    }
+}
+
+/**
+ * @brief Check if a specific system is enabled
+ *
+ * @param systemIndex
+ * @return bool
+ */
+bool Registry::isSystemEnabled(std::size_t systemIndex) const
+{
+    if (systemIndex < this->_systemsEnabled.size()) {
+        return this->_systemsEnabled[systemIndex];
+    }
+    return false;
 }

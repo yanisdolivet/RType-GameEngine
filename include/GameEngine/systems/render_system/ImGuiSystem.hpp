@@ -17,11 +17,10 @@
 class ImGuiSystem
 {
     public:
-        ImGuiSystem(Registry& registry);
-        ~ImGuiSystem();
+        ImGuiSystem(std::vector<std::string> systemName);
+        ~ImGuiSystem() = default;
         void operator()(Registry& registry, double) const;
 
     private:
-        bool* _systemEnabled;
-        std::vector<std::function<void(Registry&, double)>> _systems;
+        std::vector<std::string> _systemName;
 };

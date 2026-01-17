@@ -56,6 +56,12 @@ class Registry
 
         std::vector<std::function<void(Registry&, double)>>& getAllSystem();
 
+        void disableSpecificSystem(std::size_t systemIndex);
+
+        void enableSpecificSystem(std::size_t systemIndex);
+
+        bool isSystemEnabled(std::size_t systemIndex) const;
+
         /* --- Système de Messages Simplifié --- */
         template <typename T>
         void subscribe(std::function<void(T const&)> callback);
@@ -70,6 +76,7 @@ class Registry
         std::size_t _entitiesCount = 0;
 
         std::vector<std::function<void(Registry&, double)>> _systems;
+        std::vector<bool> _systemsEnabled;
 
         // List of functions to call when an entity is killed
         // Each function knows how to remove one specific type of component
