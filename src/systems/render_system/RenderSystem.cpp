@@ -81,7 +81,7 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
                                    txt.getSpacing());
     }
 
-    ImGuiSystem imgui;
+    ImGuiSystem imgui(reg);
     imgui(reg, double());
 
     this->_graphic->displayWindow();

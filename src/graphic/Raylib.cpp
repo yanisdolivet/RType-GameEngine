@@ -33,6 +33,7 @@ Graphic::Raylib::~Raylib()
 void Graphic::Raylib::initWindow(int width, int height, std::string const& title)
 {
     InitWindow(width, height, title.c_str());
+    rlImGuiSetup(true); // Init ImGui Window
 }
 
 void Graphic::Raylib::closeWindow()

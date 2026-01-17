@@ -1,6 +1,7 @@
 #pragma once
 
 #include <any>
+#include <imgui.h>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -10,6 +11,7 @@
 #include "IKeyMapping.hpp"
 #include "IRender.hpp"
 #include "raylib.h"
+#include "rlImGui.h"
 
 namespace Graphic
 {
