@@ -45,16 +45,13 @@ namespace Components
             int getQueueSize() const;
             bool isAnimationQueued(const std::string& animation) const;
 
-            void updateTime();
-
         protected:
         private:
             std::map<std::string, AnimatorState> _animation;
             std::string _curr_state;
             float _elapsed_time = 0.0f;
-            std::chrono::high_resolution_clock::time_point _lastTime;
-            int _current_frame = 0;
-            bool _isFinished   = false;
+            int _current_frame;
+            bool _isFinished;
             std::queue<std::string> _animationQueue;
     };
 } // namespace Components

@@ -11,10 +11,11 @@ AnimationSystem::AnimationSystem()
 {
 }
 
-void AnimationSystem::operator()(Registry& registry, double, SparseArray<Components::DrawableComponent>& drawable,
+void AnimationSystem::operator()(Registry&, double delta_time, SparseArray<Components::DrawableComponent>& drawable,
                                  SparseArray<Components::Position>& positions,
                                  SparseArray<Components::AnimationComponent>& animation,
                                  SparseArray<Components::Parallax>& parallax) const
+
 {
     // PARALLAX ANIMATION
     for (auto&& [idx, dr, pos, pr] : IndexedZipper(drawable, positions, parallax)) {
@@ -24,9 +25,11 @@ void AnimationSystem::operator()(Registry& registry, double, SparseArray<Compone
                 : Components::Scale();
 
         float maxPos = -(dr.getSourceRect().width * scaleTemp.getX());
+
         pos.setX(pos.getX() - pr.getSpeed());
         if (pos.getX() <= maxPos) {
             float newPos = dr.getSourceRect().width * scaleTemp.getX();
+
             pos.setX(newPos);
         }
         continue;
@@ -36,7 +39,8 @@ void AnimationSystem::operator()(Registry& registry, double, SparseArray<Compone
     for (auto&& [dr, an] : Zipper(drawable, animation)) {
         AnimatorState animState = an.getAnimationData(an.getCurrState());
         int curframe            = an.getCurrFrameIndex();
-        an.updateTime();
+
+        an.updateElapsedTime(static_cast<float>(delta_time));
 
         // Check for queued animation switch
         if (an.isFinished() && an.getQueueSize() > 0) {
