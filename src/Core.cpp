@@ -120,6 +120,8 @@ double GameEngine::Core::getDeltaTime()
 
 void GameEngine::Core::setMap(std::vector<std::string> entitiesList)
 {
+    this->_entityMap.clear();
+    this->_entityId = 0;
     for (auto const& entityName : entitiesList)
         this->setEntity(entityName);
 }
