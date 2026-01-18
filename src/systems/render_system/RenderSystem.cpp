@@ -43,29 +43,21 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
             Entity ent = reg.entityFromIndex(idx);
             if (reg.entity_has_component<Components::SpriteComponent>(ent)) {
                 Components::SpriteComponent sp = reg.getSpecificComponent<Components::SpriteComponent>(ent);
-                if (reg.entity_has_component<Components::Scale>(reg.entityFromIndex(idx))) {
-                    auto& scale            = reg.getSpecificComponent<Components::Scale>(reg.entityFromIndex(idx));
-                    RenderData render_data = {idx, dr.getLayer(), &pos, &dr, &scale};
-                    renderSpriteQueue.push_back(std::make_pair(sp, render_data));
+                if (!reg.entity_has_component<Components::Scale>(ent)) {
+                    reg.emplaceComponent<Components::Scale>(ent, 1.0f, 1.0f);
                 }
-                else {
-                    Components::Scale defaultScale(1.0f, 1.0f);
-                    RenderData render_data = {idx, dr.getLayer(), &pos, &dr, &defaultScale};
-                    renderSpriteQueue.push_back(std::make_pair(sp, render_data));
-                }
+                auto& scale            = reg.getSpecificComponent<Components::Scale>(ent);
+                RenderData render_data = {idx, dr.getLayer(), &pos, &dr, &scale};
+                renderSpriteQueue.push_back(std::make_pair(sp, render_data));
             }
             else if (reg.entity_has_component<Components::TextComponent>(ent)) {
                 Components::TextComponent txt = reg.getSpecificComponent<Components::TextComponent>(ent);
-                if (reg.entity_has_component<Components::Scale>(reg.entityFromIndex(idx))) {
-                    auto& scale            = reg.getSpecificComponent<Components::Scale>(reg.entityFromIndex(idx));
-                    RenderData render_data = {idx, dr.getLayer(), &pos, &dr, &scale};
-                    renderTextQueue.push_back(std::make_pair(txt, render_data));
+                if (!reg.entity_has_component<Components::Scale>(ent)) {
+                    reg.emplaceComponent<Components::Scale>(ent, 1.0f, 1.0f);
                 }
-                else {
-                    Components::Scale defaultScale(1.0f, 1.0f);
-                    RenderData render_data = {idx, dr.getLayer(), &pos, &dr, &defaultScale};
-                    renderTextQueue.push_back(std::make_pair(txt, render_data));
-                }
+                auto& scale            = reg.getSpecificComponent<Components::Scale>(ent);
+                RenderData render_data = {idx, dr.getLayer(), &pos, &dr, &scale};
+                renderTextQueue.push_back(std::make_pair(txt, render_data));
             }
         }
     }
