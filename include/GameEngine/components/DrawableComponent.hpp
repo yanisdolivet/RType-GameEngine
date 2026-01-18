@@ -16,8 +16,7 @@ namespace Components
     {
         public:
             DrawableComponent();
-            DrawableComponent(GameEngine::Math::Rectangle source_rect, bool is_visible,
-                              int layer = 0);
+            DrawableComponent(GameEngine::Math::Rectangle source_rect, bool is_visible, int layer = 0);
             ~DrawableComponent();
 
             GameEngine::Math::Rectangle getSourceRect() const;

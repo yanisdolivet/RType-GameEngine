@@ -42,12 +42,12 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
 
     for (auto&& [idx, pos, dr] : IndexedZipper(positions, drawable)) {
         if (dr.isVisible()) {
-            Entity ent             = reg.entityFromIndex(idx);
+            Entity ent = reg.entityFromIndex(idx);
             if (reg.entity_has_component<Components::SpriteComponent>(ent)) {
                 Components::SpriteComponent sp = reg.getSpecificComponent<Components::SpriteComponent>(ent);
                 if (reg.entity_has_component<Components::Scale>(reg.entityFromIndex(idx))) {
-                    RenderData render_data = {idx, dr.getLayer(), &pos, &dr};
-                    auto& scale = reg.getSpecificComponent<Components::Scale>(reg.entityFromIndex(idx));
+                    auto& scale            = reg.getSpecificComponent<Components::Scale>(reg.entityFromIndex(idx));
+                    RenderData render_data = {idx, dr.getLayer(), &pos, &dr, &scale};
                     renderSpriteQueue.push_back(std::make_pair(sp, render_data));
                 }
                 else {
@@ -59,8 +59,8 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
             else if (reg.entity_has_component<Components::TextComponent>(ent)) {
                 Components::TextComponent txt = reg.getSpecificComponent<Components::TextComponent>(ent);
                 if (reg.entity_has_component<Components::Scale>(reg.entityFromIndex(idx))) {
-                    RenderData render_data = {idx, dr.getLayer(), &pos, &dr};
-                    auto& scale = reg.getSpecificComponent<Components::Scale>(reg.entityFromIndex(idx));
+                    auto& scale            = reg.getSpecificComponent<Components::Scale>(reg.entityFromIndex(idx));
+                    RenderData render_data = {idx, dr.getLayer(), &pos, &dr, &scale};
                     renderTextQueue.push_back(std::make_pair(txt, render_data));
                 }
                 else {
