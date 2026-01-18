@@ -102,12 +102,14 @@ void GameEngine::Core::_updateTime(std::chrono::steady_clock::time_point& lastFr
     if (elapsed < frameDuration) {
         auto sleepTime = frameDuration - elapsed;
         std::this_thread::sleep_for(sleepTime);
-        lastFrameTime += frameDuration; // Prevent drift
     }
-    _deltaTime    = std::chrono::duration<double>(elapsed).count();
-    lastFrameTime = currentTime;
-}
 
+    auto currentPostSleep = std::chrono::steady_clock::now();
+    auto totalElapsed     = currentPostSleep - lastFrameTime;
+
+    _deltaTime    = std::chrono::duration<double>(totalElapsed).count();
+    lastFrameTime = currentPostSleep;
+}
 /**
  * @brief Get deltaTime var
  *

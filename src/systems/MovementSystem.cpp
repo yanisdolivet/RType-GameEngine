@@ -6,6 +6,7 @@
 */
 
 #include "MovementSystem.hpp"
+
 #include <cmath>
 
 void MovementSystem::operator()(Registry&, double, SparseArray<Components::Movement>& movements,

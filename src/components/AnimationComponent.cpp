@@ -19,7 +19,6 @@ namespace Components
     {
         this->_current_frame = 0;
         this->_elapsed_time  = 0.0f;
-        this->_lastTime      = std::chrono::high_resolution_clock::now();
         this->_isFinished    = false;
         this->_animationQueue.push(curr_state);
     }
@@ -62,7 +61,6 @@ namespace Components
     void AnimationComponent::resetElapsedTime()
     {
         this->_elapsed_time = 0.0f;
-        this->_lastTime     = std::chrono::high_resolution_clock::now();
     }
 
     void AnimationComponent::updateElapsedTime(const float dt)
@@ -78,14 +76,6 @@ namespace Components
     void AnimationComponent::resetCurrentFrame()
     {
         this->_current_frame = 0;
-    }
-
-    void AnimationComponent::updateTime()
-    {
-        auto currentTime                      = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> elapsed = currentTime - this->_lastTime;
-
-        this->_elapsed_time = static_cast<float>(elapsed.count());
     }
 
     bool AnimationComponent::isFinished() const
