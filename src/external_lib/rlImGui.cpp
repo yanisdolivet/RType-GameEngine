@@ -665,6 +665,7 @@ bool ImGui_ImplRaylib_Init(void)
 void ImGui_ImplRaylib_Shutdown()
 {
     ImGuiIO& io = ImGui::GetIO();
+    (void)io; // Suppress unused variable warning
 
     for (auto& texture : ImGui::GetPlatformIO().Textures) {
         if (texture->Status != ImTextureStatus_Destroyed) {
@@ -698,7 +699,7 @@ void ImGui_ImplRaylib_UpdateTexture(ImTextureData* tex)
         break;
 
     case ImTextureStatus_WantCreate: {
-        Image img  = {0};
+        Image img  = {};
         img.width  = tex->Width;
         img.height = tex->Height;
 
