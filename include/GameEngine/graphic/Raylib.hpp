@@ -240,6 +240,17 @@ namespace Graphic
              */
             void updateMusicStream() override;
 
+            /**
+             * @brief Draw rectangle lines at a given position with specified size, color, and line thickness
+             *
+             * @param position The (x, y) position to draw the rectangle lines
+             * @param size The (width, height) size of the rectangle
+             * @param color The color of the rectangle lines as an (R, G, B, A) tuple
+             * @param lineThick The thickness of the rectangle lines
+             */
+            void drawRectangleLines(std::pair<float, float> position, std::pair<float, float> size,
+                                    std::tuple<uint8_t, uint8_t, uint8_t, uint8_t> color, float lineThick) override;
+
         private:
             /**
              * @brief A map storing textures with their associated names

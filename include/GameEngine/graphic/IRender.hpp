@@ -29,6 +29,8 @@ namespace Graphic
             virtual void renderText(const std::string& content, const std::string& fontName,
                                     std::pair<float, float> position, int size,
                                     std::tuple<uint8_t, uint8_t, uint8_t, uint8_t> color, float spacing) = 0;
+            virtual void drawRectangleLines(std::pair<float, float> position, std::pair<float, float> size,
+                                            std::tuple<uint8_t, uint8_t, uint8_t, uint8_t> color, float lineThick) = 0;
 
         protected:
         private:

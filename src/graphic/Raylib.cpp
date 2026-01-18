@@ -278,3 +278,10 @@ void Graphic::Raylib::updateMusicStream()
         UpdateMusicStream(val);
     }
 }
+
+void Graphic::Raylib::drawRectangleLines(std::pair<float, float> position, std::pair<float, float> size,
+                                         std::tuple<uint8_t, uint8_t, uint8_t, uint8_t> color, float lineThick)
+{
+    Color rectColor = {std::get<0>(color), std::get<1>(color), std::get<2>(color), std::get<3>(color)};
+    DrawRectangleLinesEx({position.first, position.second, size.first, size.second}, (float)lineThick, rectColor);
+}
