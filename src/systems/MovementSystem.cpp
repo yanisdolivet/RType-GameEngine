@@ -6,19 +6,28 @@
 */
 
 #include "MovementSystem.hpp"
+#include <cmath>
 
 void MovementSystem::operator()(Registry&, double, SparseArray<Components::Movement>& movements,
                                 SparseArray<Components::Velocity>& velocities,
                                 SparseArray<Components::Speed>& speeds) const
 {
     for (auto&& [idx, movement, velocity, speed] : IndexedZipper(movements, velocities, speeds)) {
-        if (movement.getHorizontal() != 0)
-            velocity.setVx(static_cast<float>(movement.getHorizontal() * speed.getSpeed()));
-        else
+        float h             = static_cast<float>(movement.getHorizontal());
+        float v             = static_cast<float>(movement.getVertical());
+        float current_speed = static_cast<float>(speed.getSpeed());
+
+        if (h != 0 || v != 0) {
+            float length = std::sqrt(h * h + v * v);
+
+            h = h / length;
+            v = v / length;
+            velocity.setVx(h * current_speed);
+            velocity.setVy(v * current_speed);
+        }
+        else {
             velocity.setVx(0);
-        if (movement.getVertical() != 0)
-            velocity.setVy(static_cast<float>(movement.getVertical() * speed.getSpeed()));
-        else
             velocity.setVy(0);
+        }
     }
 }
