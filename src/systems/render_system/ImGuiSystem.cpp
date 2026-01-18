@@ -25,11 +25,12 @@ void ImGuiSystem::operator()(Registry& registry, double) const
     std::size_t numSystems = registry.getAllSystem().size();
     ImGui::Text("Number of Systems : %zu", numSystems);
 
-    // Display toggle for each system
+    static constexpr std::string UNKNOWN_SYSTEM_NAME = "Unknown System";
     for (std::size_t i = 0; i < numSystems; ++i) {
         bool enabled = registry.isSystemEnabled(i);
         ImGui::PushID(static_cast<int>(i));
-        if (ImGui::Checkbox(_systemName[i].c_str(), &enabled)) {
+        std::string systemName = (i < _systemName.size()) ? _systemName[i] : UNKNOWN_SYSTEM_NAME;
+        if (ImGui::Checkbox(systemName.c_str(), &enabled)) {
             // Toggle system on checkbox change
             if (enabled) {
                 registry.enableSpecificSystem(i);
