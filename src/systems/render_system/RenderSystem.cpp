@@ -7,7 +7,6 @@
 
 #include "RenderSystem.hpp"
 
-
 #include <algorithm>
 #include <vector>
 
@@ -38,12 +37,13 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
     std::vector<RenderData> renderQueue;
     renderQueue.reserve(100); // Pre-allocate to avoid reallocations
 
-     for (auto&& [idx, pos, sp, dr] : IndexedZipper(positions, sprite, drawable)) {
+    for (auto&& [idx, pos, sp, dr] : IndexedZipper(positions, sprite, drawable)) {
         if (dr.isVisible()) {
             if (reg.entity_has_component<Components::Scale>(reg.entityFromIndex(idx))) {
-                auto &scale = reg.getSpecificComponent<Components::Scale>(reg.entityFromIndex(idx));
+                auto& scale = reg.getSpecificComponent<Components::Scale>(reg.entityFromIndex(idx));
                 renderQueue.push_back({idx, dr.getLayer(), &pos, &sp, &dr, &scale});
-            } else {
+            }
+            else {
                 Components::Scale defaultScale(1.0f, 1.0f);
                 renderQueue.push_back({idx, dr.getLayer(), &pos, &sp, &dr, &defaultScale});
             }

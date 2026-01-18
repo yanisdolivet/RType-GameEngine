@@ -20,7 +20,7 @@ void AnimationSystem::operator()(Registry& registry, double, SparseArray<Compone
     for (auto&& [idx, dr, pos, pr] : IndexedZipper(drawable, positions, parallax)) {
         Components::Scale scaleTemp = Components::Scale();
         if (registry.entity_has_component<Components::Scale>(registry.entityFromIndex(idx))) {
-            auto &scale = registry.getSpecificComponent<Components::Scale>(registry.entityFromIndex(idx));
+            auto& scale = registry.getSpecificComponent<Components::Scale>(registry.entityFromIndex(idx));
             scaleTemp.setX(scale.getX());
             scaleTemp.setY(scale.getY());
         }
