@@ -39,14 +39,14 @@ void RenderSystem::operator()(Registry& reg, double, SparseArray<Components::Pos
 
     for (auto&& [idx, pos, sp, dr] : IndexedZipper(positions, sprite, drawable)) {
         if (dr.isVisible()) {
-            Components::Scale scale;
-            try {
-                scale = reg.getSpecificComponent<Components::Scale>(reg.entityFromIndex(idx));
+            if (reg.entity_has_component<Components::Scale>(reg.entityFromIndex(idx))) {
+                auto& scale = reg.getSpecificComponent<Components::Scale>(reg.entityFromIndex(idx));
+                renderQueue.push_back({idx, dr.getLayer(), &pos, &sp, &dr, &scale});
             }
-            catch (const std::logic_error&) {
-                continue;
+            else {
+                Components::Scale defaultScale(1.0f, 1.0f);
+                renderQueue.push_back({idx, dr.getLayer(), &pos, &sp, &dr, &defaultScale});
             }
-            renderQueue.push_back({idx, dr.getLayer(), &pos, &sp, &dr, &scale});
         }
     }
 
