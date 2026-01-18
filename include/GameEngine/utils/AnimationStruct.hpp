@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include "EngineMath.hpp"
 #include "raylib.h"
 
 struct AnimationData
@@ -19,7 +20,7 @@ struct AnimatorState
 {
         bool loop;
         AnimationData animation;
-        Vector2 origin;
-        Vector2 size;
-        Vector2 offset;
+        GameEngine::Math::Vector2 origin;
+        GameEngine::Math::Vector2 size;
+        GameEngine::Math::Vector2 offset;
 };

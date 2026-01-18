@@ -8,6 +8,7 @@
 #include "Core.hpp"
 
 #include <iostream>
+#include <raylib.h>
 #include <thread>
 
 /**
@@ -25,6 +26,11 @@ GameEngine::Core::Core() : _isRunning(false), _deltaTime(0)
  */
 GameEngine::Core::~Core()
 {
+}
+
+std::chrono::steady_clock::time_point GameEngine::Core::getTimer() const
+{
+    return this->_lastTime;
 }
 
 /**

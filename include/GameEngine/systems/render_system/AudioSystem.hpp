@@ -1,28 +1,24 @@
 /*
-** EPITECH PROJECT, 2025
-** R-Type
+** EPITECH PROJECT, 2026
+** R-Type-GameEngine
 ** File description:
 ** AudioSystem
 */
 
 #pragma once
 
+#include <memory>
+
 #include "IAudio.hpp"
+#include "Registry.hpp"
 
 class AudioSystem
 {
     public:
-        AudioSystem(Graphic::IAudio& audioBackend) : _audio(audioBackend)
-        {
-        }
-        ~AudioSystem();
+        explicit AudioSystem(std::shared_ptr<Graphic::IAudio> graphic);
 
-        void playShoot()
-        {
-            _audio.playSound("shoot.mp4");
-        }
+        void operator()(Registry& registry, double) const;
 
-    protected:
     private:
-        Graphic::IAudio& _audio;
+        std::shared_ptr<Graphic::IAudio> _graphic;
 };

@@ -14,6 +14,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_package(raylib REQUIRED)
 find_package(GTest REQUIRED)
 find_package(spdlog REQUIRED)
+find_package(imgui REQUIRED)
 
 # Define the Library Target --> Move to SHARE later
 add_library(GameEngine STATIC
@@ -50,8 +51,13 @@ add_library(GameEngine STATIC
     src/systems/PhysicsSystem.cpp
     src/systems/animation_system/AnimationSystem.cpp
     src/systems/render_system/RenderSystem.cpp
-    src/systems/render_system/ResourceManager.cpp
+    src/manager/ResourceManager.cpp
+    src/systems/InputPressedSystem.cpp
+    src/components/TextComponent.cpp
+    src/systems/render_system/AudioSystem.cpp
+    src/manager/SceneManager.cpp
 
+    src/external_lib/rlImGui.cpp
 )
 
 # Set executable at root of project
@@ -68,12 +74,14 @@ target_include_directories(GameEngine
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/events>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/event_subscriptions>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/graphic>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/manager>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/init>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/systems>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/systems/animation_system>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/systems/render_system>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/ecs/tppFiles>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/utils>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/GameEngine/external_lib>
         $<INSTALL_INTERFACE:include/GameEngine>
 
     PRIVATE
@@ -85,6 +93,7 @@ target_link_libraries(GameEngine
     PUBLIC
         raylib
         spdlog::spdlog
+        imgui::imgui
     PRIVATE
         GTest::gtest
 )
@@ -93,7 +102,7 @@ target_link_libraries(GameEngine
 if(MSVC)
     target_compile_options(GameEngine PRIVATE /W4)
 else()
-    target_compile_options(GameEngine PRIVATE -Wall -Wextra -Werror)
+    target_compile_options(GameEngine PRIVATE -Wall -Wextra)
 endif()
 
 # Alias to refer as GameEngine::GameEngine

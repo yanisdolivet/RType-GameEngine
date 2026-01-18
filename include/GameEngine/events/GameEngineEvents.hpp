@@ -19,7 +19,9 @@ struct EventGameExit
 struct EventCollision
 {
         std::size_t entityA;
+        std::string entityAName;
         std::size_t entityB;
+        std::string entityBName;
 };
 
 struct EventEntityDeath
@@ -49,4 +51,9 @@ struct EventRight
 
 struct EventLeftClick
 {
+};
+
+struct EventChangeScene
+{
+        std::string sceneName;
 };

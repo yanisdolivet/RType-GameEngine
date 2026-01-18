@@ -158,6 +158,7 @@ void Registry::addSystem(Function&& func)
     };
 
     this->_systems.push_back(wrapped_system);
+    this->_systemsEnabled.push_back(true); // System is enabled by default
 }
 
 /* --- Messaging System Implementation --- */

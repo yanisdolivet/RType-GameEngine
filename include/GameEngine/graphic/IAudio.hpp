@@ -22,6 +22,7 @@ namespace Graphic
             virtual void playMusic(std::string const& musicName)                              = 0;
             virtual void stopMusic(std::string const& musicName)                              = 0;
             virtual void setVolumeMusic(std::string const& musicName, float volume)           = 0;
+            virtual void updateMusicStream()                                                  = 0;
 
         protected:
         private:
