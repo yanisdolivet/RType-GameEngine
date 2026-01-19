@@ -18,8 +18,8 @@ namespace Components
             Sound(const std::string& onSpawnSound, const std::string& onDestroySound);
             ~Sound();
 
-            std::string getOnSpawnSound() const;
-            std::string getOnDestroySound() const;
+            const std::string& getOnSpawnSound() const;
+            const std::string& getOnDestroySound() const;
 
             void setOnSpawnSound(const std::string& onSpawnSound);
             void setOnDestroySound(const std::string& onDestroySound);
