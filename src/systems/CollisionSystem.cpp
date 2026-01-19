@@ -29,7 +29,7 @@ void CollisionSystem::operator()(Registry& registry, double, SparseArray<Compone
             if (registry.entity_has_component<Components::Scale>(registry.entityFromIndex(idxB))) {
                 scaleB = registry.getSpecificComponent<Components::Scale>(registry.entityFromIndex(idxB));
             }
-            if (idxA >= idxB || colliderA.getType() == colliderB.getType())
+            if (idxA >= idxB)
                 continue;
 
             bool collisionX = posA.getX() < posB.getX() + colliderB.getWidth() * scaleB.getX() &&
@@ -38,7 +38,8 @@ void CollisionSystem::operator()(Registry& registry, double, SparseArray<Compone
                               posA.getY() + colliderA.getHeight() * scaleA.getY() > posB.getY();
 
             if (collisionX && collisionY) {
-                registry.publish(EventCollision{static_cast<Entity>(idxA), static_cast<Entity>(idxB)});
+                registry.publish(EventCollision{static_cast<Entity>(idxA), colliderA.getType(),
+                                                static_cast<Entity>(idxB), colliderB.getType()});
             }
         }
     }

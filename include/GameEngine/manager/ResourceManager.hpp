@@ -25,7 +25,9 @@ class ResourceManager
         ~ResourceManager();
 
         void loadTexturesFromMap(const std::map<std::string, std::string>& sprites);
+        void loadFontsFromMap(const std::map<std::string, std::string>& fonts);
         void loadSoundsFromMap(const std::map<std::string, std::string>& sounds);
+        void loadMusicsFromMap(const std::map<std::string, std::string>& musics);
 
     private:
         Graphic::IAssetLoader& _loader;

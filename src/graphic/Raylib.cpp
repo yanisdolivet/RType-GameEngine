@@ -23,6 +23,9 @@ Graphic::Raylib::~Raylib()
     for (auto& [name, music] : this->_musics) {
         UnloadMusicStream(music);
     }
+    for (auto& [name, font] : this->_fonts) {
+        UnloadFont(font);
+    }
     CloseAudioDevice();
     CloseWindow();
 }
@@ -30,10 +33,12 @@ Graphic::Raylib::~Raylib()
 void Graphic::Raylib::initWindow(int width, int height, std::string const& title)
 {
     InitWindow(width, height, title.c_str());
+    rlImGuiSetup(true); // Init ImGui Window
 }
 
 void Graphic::Raylib::closeWindow()
 {
+    rlImGuiShutdown(); // Shutdown ImGui Window
     CloseWindow();
 }
 
@@ -80,6 +85,13 @@ void Graphic::Raylib::addTexture(std::string const& spritePath, std::string cons
     }
 }
 
+void Graphic::Raylib::addFont(std::string const& fontPath, std::string const& fontName)
+{
+    if (this->_fonts.find(fontName) == this->_fonts.end()) {
+        this->_fonts[fontName] = LoadFont(fontPath.c_str());
+    }
+}
+
 void Graphic::Raylib::renderSprite(std::string const& spriteName, std::pair<float, float> position,
                                    std::pair<float, float> spriteSection,
                                    std::pair<unsigned int, unsigned int> sectionSize, std::pair<float, float> scale)
@@ -107,6 +119,22 @@ void Graphic::Raylib::renderSprite(std::string const& spriteName, std::pair<floa
     sourceRect         = {spriteSection.first, spriteSection.second, frameW, frameH};
     Rectangle destRect = {position.first, position.second, frameW * scale.first, frameH * scale.second};
     DrawTexturePro(texture, sourceRect, destRect, {0.f, 0.f}, 0.f, WHITE);
+}
+
+void Graphic::Raylib::renderText(const std::string& content, const std::string& fontName,
+                                 std::pair<float, float> position, int size,
+                                 std::tuple<uint8_t, uint8_t, uint8_t, uint8_t> color, float spacing)
+{
+    Vector2 pos     = {position.first, position.second};
+    Color textColor = {std::get<0>(color), std::get<1>(color), std::get<2>(color), std::get<3>(color)};
+
+    if (this->_fonts.find(fontName) == this->_fonts.end()) {
+        // Font not found
+        DrawText(content.c_str(), pos.x, pos.y, size, textColor);
+        return;
+    }
+    const Font& font = this->_fonts[fontName];
+    DrawTextEx(font, content.c_str(), pos, size, spacing, textColor);
 }
 
 void Graphic::Raylib::addSound(std::string const& soundPath, std::string const& soundName)
@@ -238,4 +266,23 @@ std::pair<float, float> Graphic::Raylib::getMousePosition() const
 {
     Vector2 mousePos = GetMousePosition();
     return std::make_pair(mousePos.x, mousePos.y);
+}
+
+std::pair<float, float> Graphic::Raylib::getWindowSize() const
+{
+    return std::make_pair((float)GetScreenWidth(), (float)GetScreenHeight());
+}
+
+void Graphic::Raylib::updateMusicStream()
+{
+    for (const auto& [key, val] : this->_musics) {
+        UpdateMusicStream(val);
+    }
+}
+
+void Graphic::Raylib::drawRectangleLines(std::pair<float, float> position, std::pair<float, float> size,
+                                         std::tuple<uint8_t, uint8_t, uint8_t, uint8_t> color, float lineThick)
+{
+    Color rectColor = {std::get<0>(color), std::get<1>(color), std::get<2>(color), std::get<3>(color)};
+    DrawRectangleLinesEx({position.first, position.second, size.first, size.second}, (float)lineThick, rectColor);
 }

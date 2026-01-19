@@ -7,17 +7,18 @@
 
 #include "EngineSubscriptions.hpp"
 
-#include <iostream>
-
-#include "Collider.hpp"
-#include "Controllable.hpp"
-#include "GameEngineEvents.hpp"
-#include "IndexedZipper.hpp"
-
-void Common::initEngineSubscriptions(GameEngine::Core& engine)
+void Common::initEngineSubscriptions(GameEngine::Core& engine,
+                                     std::optional<std::reference_wrapper<SceneManager>> sceneManager)
 {
     // Subscribe to the EventGameExit to stop the engine
     engine.getRegistry().subscribe<EventGameExit>([&engine](EventGameExit const&) {
         engine.stop();
     });
+
+    // Subscribe to EventChangeScene to change scenes via the SceneManager (only if provided)
+    if (sceneManager) {
+        engine.getRegistry().subscribe<EventChangeScene>([sceneManager](EventChangeScene const& event) {
+            sceneManager->get().changeScene(event.sceneName);
+        });
+    }
 }
