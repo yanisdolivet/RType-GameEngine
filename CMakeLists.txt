@@ -34,6 +34,7 @@ add_library(GameEngine STATIC
     src/components/SpriteComponent.cpp
     src/components/Velocity.cpp
     src/components/Scale.cpp
+    src/components/Sound.cpp
 
     src/ecs/Entity.cpp
     src/ecs/Registry.cpp
