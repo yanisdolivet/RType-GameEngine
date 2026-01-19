@@ -9,21 +9,23 @@
 
 #include <string>
 
-class Sound {
-    public:
-        Sound();
-        Sound(const std::string &onSpawnSound, const std::string &onDestroySound);
-        ~Sound();
+namespace Components {
+    class Sound {
+        public:
+            Sound();
+            Sound(const std::string &onSpawnSound, const std::string &onDestroySound);
+            ~Sound();
 
-        std::string getOnSpawnSound() const;
-        std::string getOnDestroySound() const;
+            std::string getOnSpawnSound() const;
+            std::string getOnDestroySound() const;
 
-        void setOnSpawnSound(const std::string &onSpawnSound);
-        void setOnDestroySound(const std::string &onDestroySound);
+            void setOnSpawnSound(const std::string &onSpawnSound);
+            void setOnDestroySound(const std::string &onDestroySound);
 
-        bool operator==(const Sound &other) const;
-    protected:
-    private:
-        std::string _onSpawnSound;
-        std::string _onDestroySound;
-};
+            bool operator==(const Sound &other) const;
+        protected:
+        private:
+            std::string _onSpawnSound;
+            std::string _onDestroySound;
+    };
+} // namespace Components
