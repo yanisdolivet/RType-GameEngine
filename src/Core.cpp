@@ -102,8 +102,8 @@ void GameEngine::Core::_updateTime()
     auto currentPostSleep = std::chrono::steady_clock::now();
     auto totalElapsed     = currentPostSleep - _lastTime;
 
-    _deltaTime    = std::chrono::duration<double>(totalElapsed).count();
-    _lastTime = currentPostSleep;
+    _deltaTime = std::chrono::duration<double>(totalElapsed).count();
+    _lastTime  = currentPostSleep;
 }
 /**
  * @brief Get deltaTime var
