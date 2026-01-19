@@ -11,7 +11,8 @@ AnimationSystem::AnimationSystem()
 {
 }
 
-void AnimationSystem::operator()(Registry& registry, double delta_time, SparseArray<Components::DrawableComponent>& drawable,
+void AnimationSystem::operator()(Registry& registry, double delta_time,
+                                 SparseArray<Components::DrawableComponent>& drawable,
                                  SparseArray<Components::Position>& positions,
                                  SparseArray<Components::AnimationComponent>& animation,
                                  SparseArray<Components::Parallax>& parallax) const
