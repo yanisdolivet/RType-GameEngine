@@ -26,6 +26,7 @@ namespace Components
             AnimationComponent(const std::map<std::string, AnimatorState>& animation, const std::string& curr_state);
             ~AnimationComponent();
 
+            std::map<std::string, AnimatorState> getAllAnimations() const;
             AnimatorState getAnimationData(std::string animation) const;
             std::string getCurrState() const;
             int getCurrFrameIndex() const;

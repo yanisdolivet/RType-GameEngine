@@ -27,6 +27,11 @@ namespace Components
     {
     }
 
+    std::map<std::string, AnimatorState> AnimationComponent::getAllAnimations() const
+    {
+        return this->_animation;
+    }
+
     AnimatorState AnimationComponent::getAnimationData(std::string animation) const
     {
         return this->_animation.at(animation);
