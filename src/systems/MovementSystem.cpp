@@ -17,14 +17,11 @@ void MovementSystem::operator()(Registry&, double, SparseArray<Components::Movem
         float h             = static_cast<float>(movement.getHorizontal());
         float v             = static_cast<float>(movement.getVertical());
         float current_speed = static_cast<float>(speed.getSpeed());
+        float length        = std::sqrt(h * h + v * v);
 
-        if (h != 0 || v != 0) {
-            float length = std::sqrt(h * h + v * v);
-
-            h = h / length;
-            v = v / length;
-            velocity.setVx(h * current_speed);
-            velocity.setVy(v * current_speed);
+        if (length > 0.0001f) {
+            velocity.setVx((h / length) * current_speed);
+            velocity.setVy((v / length) * current_speed);
         }
         else {
             velocity.setVx(0);

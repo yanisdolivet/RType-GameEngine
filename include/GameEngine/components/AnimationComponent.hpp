@@ -50,8 +50,8 @@ namespace Components
             std::map<std::string, AnimatorState> _animation;
             std::string _curr_state;
             float _elapsed_time = 0.0f;
-            int _current_frame;
-            bool _isFinished;
+            int _current_frame  = 0;
+            bool _isFinished    = false;
             std::queue<std::string> _animationQueue;
     };
 } // namespace Components
