@@ -58,8 +58,8 @@ void AnimationSystem::operator()(Registry& registry, double delta_time,
             GameEngine::Math::Rectangle newRect;
             newRect.width  = animState.size.x;
             newRect.height = animState.size.y;
-            newRect.x      = curframe * animState.offset.x;
-            newRect.y      = curframe * animState.offset.y;
+            newRect.x      = animState.origin.x + curframe * animState.offset.x;
+            newRect.y      = animState.origin.y + curframe * animState.offset.y;
             dr.setRectange(newRect);
 
             an.resetElapsedTime();
