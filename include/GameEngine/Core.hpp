@@ -47,8 +47,7 @@ namespace GameEngine
 
         private:
             void setEntity(const std::string& entityName);
-            void _updateTime(std::chrono::steady_clock::time_point& lastFrameTime,
-                             const std::chrono::nanoseconds frameDuration);
+            void _updateTime();
 
         private:
             Registry _registry;
