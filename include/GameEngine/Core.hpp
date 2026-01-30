@@ -16,7 +16,8 @@
 #include "Registry.hpp"
 
 #define FRAME_RATE 60
-#define FRAME_DURATION std::chrono::nanoseconds(1000000000 / FRAME_RATE)
+#define DURATION 1000000000
+#define FRAME_DURATION std::chrono::nanoseconds(DURATION / FRAME_RATE)
 
 namespace GameEngine
 {
@@ -46,8 +47,7 @@ namespace GameEngine
 
         private:
             void setEntity(const std::string& entityName);
-            void _updateTime(std::chrono::steady_clock::time_point& lastFrameTime,
-                             const std::chrono::nanoseconds frameDuration);
+            void _updateTime();
 
         private:
             Registry _registry;

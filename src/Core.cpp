@@ -49,11 +49,8 @@ Registry& GameEngine::Core::getRegistry()
  */
 void GameEngine::Core::run()
 {
-    auto frameDuration = FRAME_DURATION;
-    auto lastFrameTime = std::chrono::steady_clock::now();
-
     while (this->_isRunning) {
-        this->_updateTime(lastFrameTime, frameDuration);
+        this->_updateTime();
         this->_registry.runSystems(_deltaTime);
     }
 }
@@ -64,10 +61,7 @@ void GameEngine::Core::run()
  */
 void GameEngine::Core::update()
 {
-    auto frameDuration = FRAME_DURATION;
-    auto lastFrameTime = std::chrono::steady_clock::now();
-
-    this->_updateTime(lastFrameTime, frameDuration);
+    this->_updateTime();
     this->_registry.runSystems(this->_deltaTime);
 }
 
@@ -93,11 +87,12 @@ void GameEngine::Core::start()
  * @brief Update the delta time between frames
  *
  */
-void GameEngine::Core::_updateTime(std::chrono::steady_clock::time_point& lastFrameTime,
-                                   const std::chrono::nanoseconds frameDuration)
+void GameEngine::Core::_updateTime()
 {
+    auto frameDuration = FRAME_DURATION;
+
     auto currentTime = std::chrono::steady_clock::now();
-    auto elapsed     = currentTime - lastFrameTime;
+    auto elapsed     = currentTime - _lastTime;
 
     if (elapsed < frameDuration) {
         auto sleepTime = frameDuration - elapsed;
@@ -105,10 +100,10 @@ void GameEngine::Core::_updateTime(std::chrono::steady_clock::time_point& lastFr
     }
 
     auto currentPostSleep = std::chrono::steady_clock::now();
-    auto totalElapsed     = currentPostSleep - lastFrameTime;
+    auto totalElapsed     = currentPostSleep - _lastTime;
 
-    _deltaTime    = std::chrono::duration<double>(totalElapsed).count();
-    lastFrameTime = currentPostSleep;
+    _deltaTime = std::chrono::duration<double>(totalElapsed).count();
+    _lastTime  = currentPostSleep;
 }
 /**
  * @brief Get deltaTime var
